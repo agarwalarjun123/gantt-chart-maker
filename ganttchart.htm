@@ -14,7 +14,7 @@ function add(){
 var x=document.getElementById("t1").value;
 
 var y=document.getElementById("d1").value;
-console.log("ssss");
+console.log("sss");
 var z=new Date(y);
 y=z.getDate()+"/"+(z.getMonth()+1)+"/"+(z.getFullYear());
 document.getElementById("t1").value="";
@@ -40,27 +40,31 @@ a.style.height="100%";
 a.style.backgroundColor=u;
 a.style.float="left";
 a.style.textAlign="center";
-a.onmouseover="show";
+a.style.color="black";
+$(a).addClass("por");
 document.getElementById("gantt").appendChild(a);
 var b=document.createTextNode(varray[i][0]);
 a.appendChild(b);
 var s=document.createElement("p");
 var t=document.createTextNode(varray[i][1]);
 a.appendChild(s);
-
 s.appendChild(t);
 s.id="u"+i;
 
-//$("#u"+i).hide();
+$("#u"+i).hide();
 
 }
+$(document).ready(function(){
+	$(".por").click(function(){
+	$(this.childNodes[1]).fadeToggle();
+
+	});
+});
+	
+
+
 }
 	
-	$("#a0").click(function(){
-		console.log("sss");
-	$("#u0").show();
-	});
-
 
 function getRandomColor() {
   var letters = '0123456789ABCDEF';

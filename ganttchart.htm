@@ -1,0 +1,111 @@
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script>
+
+var darray=[];	
+var today=new Date();
+var d=today.getDate()+"/"+(today.getMonth()+1)+"/"+(today.getFullYear());
+var array=["currentdate",today];
+darray.push(array);
+varray=[];
+function add(){
+var x=document.getElementById("t1").value;
+
+var y=document.getElementById("d1").value;
+console.log(y);
+var z=new Date(y);
+y=z.getDate()+"/"+(z.getMonth()+1)+"/"+(z.getFullYear());
+document.getElementById("t1").value="";
+console.log(y);
+ array=[x,z];
+ 
+
+darray.push(array);
+console.log(darray);
+ varray=darray.sort(function(a,b){
+	return (a[1].getTime()-b[1].getTime());
+	});
+$("#gantt").empty();
+for(var i=0;i<varray.length;i++){
+var a=document.createElement("div");
+
+a.id="a"+i;
+var u=getRandomColor();
+//console.log(u);
+var z=100/(varray.length);
+a.style.width=z+"%";
+a.style.height="100%";
+a.style.backgroundColor=u;
+a.style.float="left";
+a.style.textAlign="center";
+a.onmouseover="show";
+document.getElementById("gantt").appendChild(a);
+var b=document.createTextNode(varray[i][0]);
+a.appendChild(b);
+var s=document.createElement("p");
+var t=document.createTextNode(varray[i][1]);
+a.appendChild(s);
+
+s.appendChild(t);
+s.id="u"+i;
+
+//$("#u"+i).hide();
+
+}
+}
+	
+	$("#a0").click(function(){
+		console.log("sss");
+	$("#u0").show();
+	});
+
+
+function getRandomColor() {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
+</script>
+
+
+<div class="container Jumbotron">
+<H1>Gannt Chart Maker</H1>
+<input type="text" class="form-control" id="t1"><br><br>
+
+<input type="date" id="d1"><br><br>
+<button class="btn" onclick="add()">+</button><br><br>
+<button class="btn">-</button><br><br>	
+<div id="gantt">
+
+
+
+</div>
+
+
+<style>
+button{
+width:50px;	
+}
+#gantt{	
+	width:100%;
+	height:3%;
+	margin-top:auto;
+	border-style:solid;
+	border-width:1px;
+	background-color:white;
+}
+.per{
+	width:30%;
+	background-color:yellow;
+	height:100%;
+	
+	border-width:1px;
+}
+
+</style>	
